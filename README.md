@@ -31,7 +31,7 @@ I build this application using React and Redux togethar.
 
 - `Npm run test`
   
-## Deployment
+## Setup
 
 1. Clone the project using git-bash or Githup Desktop.
 2. Open the project folder with VSCode or any Editor.

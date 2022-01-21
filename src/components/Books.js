@@ -17,12 +17,10 @@ const Books = () => {
       category: formData.get('category'),
     };
     dispatch(postBooks(newBook));
-    // dispatch(getBooks());
   };
 
   const handleRemove = (id) => {
     dispatch(deleteBook(id));
-    // dispatch(getBooks());
   };
 
   return (
@@ -33,11 +31,11 @@ const Books = () => {
             <li key={key}>
               <h3>
                 Title:
-                {value[0]?.title}
+                {value[0].title}
               </h3>
               <p>
-                Auther:
-                {value[0]?.category}
+                Category:
+                {value[0].category}
               </p>
               <button
                 type="button"
@@ -64,7 +62,7 @@ const Books = () => {
           placeholder="Add Book Category"
           required
         >
-          <option value="" selected disabled hidden>
+          <option value="" default hidden>
             Choose a Category
           </option>
           <option value="Fiction">Fiction</option>

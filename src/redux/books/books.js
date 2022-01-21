@@ -46,16 +46,16 @@ const DELETE_BOOKS = 'DELETE_BOOKS';
 const DELETE_BOOKS_SUCCESS = 'DELETE_BOOKS_SUCCESS';
 const DELETE_BOOKS_FAILURE = 'DELETE_BOOKS_FAILURE';
 
-export const deleteBooksRequest = () => ({
+export const deleteBookRequest = () => ({
   type: DELETE_BOOKS,
 });
 
-export const deleteBooksSuccess = (bookId) => ({
+export const deleteBookSuccess = (bookId) => ({
   type: DELETE_BOOKS_SUCCESS,
   payload: bookId,
 });
 
-export const deleteBooksFailure = (error) => ({
+export const deleteBookFailure = (error) => ({
   type: DELETE_BOOKS_FAILURE,
   error,
 });
@@ -155,15 +155,15 @@ export const postBooks = (newBook) => async (dispatch) => {
 };
 
 export const deleteBook = (id) => async (dispatch) => {
-  dispatch(deleteBooksRequest());
+  dispatch(deleteBookRequest());
   try {
     const delURL = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/CqPOA94UfXDdN76nPU1T/books/${id}`;
     const response = await axios.delete(delURL);
     if (response.status === 201) {
-      dispatch(deleteBooksSuccess(id));
+      dispatch(deleteBookSuccess(id));
     }
   } catch (err) {
-    dispatch(deleteBooksFailure(err.message));
+    dispatch(deleteBookFailure(err.message));
   }
 };
 

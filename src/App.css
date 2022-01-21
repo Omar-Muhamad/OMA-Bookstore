@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
 /* ############### Genral Style ################# */
 a {
   text-decoration: none;
@@ -36,7 +37,7 @@ form {
 }
 
 #header {
-  font-family:'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -112,7 +113,7 @@ form {
 .category {
   height: 1.125rem;
   opacity: 0.5;
-  font-family:'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
   font-weight: bold;
   color: #121212;
@@ -134,25 +135,26 @@ form {
 
 .formTitle {
   width: 10.875rem;
-  font-family:'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
   font-weight: bold;
   color: #888;
 }
 
-.formContainer{
+.formContainer {
   height: 3rem;
   margin-top: 1.2rem;
   display: flex;
   gap: 2.2rem;
 }
 
-#title, #category {
+#title,
+#category {
   height: 100%;
   padding: 0 1rem;
   flex-grow: 1;
   width: 4.75rem;
-  font-family:'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   color: #121212;
 }

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 
 const Header = () => (
-  <header>
-    <Link to="/">
-      <h1>OMA Bookstore</h1>
-    </Link>
+  <header id="header">
     <nav className="navbar">
+      <div className="container">
+        <Link to="/">
+          <h1>OMA Bookstore</h1>
+        </Link>
+      </div>
       <ul className="navLinks">
         <Link to="/">
           <li className="navLink">Books</li>

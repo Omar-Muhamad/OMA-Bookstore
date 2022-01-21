@@ -1,43 +1,47 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addBook, removeBook } from '../redux/books/books'; //eslint-disable-line
+import { getBooks, postBooks, deleteBook } from '../redux/books/books';
 
 const Books = () => {
-  const books = useSelector((state) => state.books);
+  const booksData = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
+  useEffect(() => dispatch(getBooks()), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newBook = {
-      id: uuidv4(),
+      item_id: uuidv4(),
       title: formData.get('title'),
-      author: 'Anyone',
+      category: formData.get('category'),
     };
-    dispatch(addBook(newBook));
+    dispatch(postBooks(newBook));
+    // dispatch(getBooks());
   };
 
-  const handleRemove = (bookId) => {
-    dispatch(removeBook(bookId));
+  const handleRemove = (id) => {
+    dispatch(deleteBook(id));
+    // dispatch(getBooks());
   };
 
   return (
     <>
       <div>
         <ul className="bookList">
-          {books.map((book) => (
-            <li key={book.id}>
+          {Object.entries(booksData).map(([key, value]) => (
+            <li key={key}>
               <h3>
                 Title:
-                {book.title}
+                {value[0].title}
               </h3>
               <p>
                 Auther:
-                {book.author}
+                {value[0].category}
               </p>
               <button
                 type="button"
-                onClick={() => handleRemove(book.id)}
+                onClick={() => handleRemove(key)}
                 className="removeBtn"
               >
                 Remove
@@ -54,6 +58,23 @@ const Books = () => {
           id="title"
           required
         />
+        <select
+          name="category"
+          id="category"
+          placeholder="Add Book Category"
+          required
+        >
+          <option value="" selected disabled hidden>
+            Choose a Category
+          </option>
+          <option value="Fiction">Fiction</option>
+          <option value="Action and Adventure">Action and Adventure</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Romance">Romance</option>
+          <option value="Letteriture">Letteriture</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Comics">Comic</option>
+        </select>
         <button type="submit" id="addBookBtn">
           Add book
         </button>

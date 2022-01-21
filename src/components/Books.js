@@ -33,11 +33,11 @@ const Books = () => {
             <li key={key}>
               <h3>
                 Title:
-                {value[0].title}
+                {value[0]?.title}
               </h3>
               <p>
                 Auther:
-                {value[0].category}
+                {value[0]?.category}
               </p>
               <button
                 type="button"

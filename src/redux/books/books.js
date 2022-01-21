@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const initialState = {
   loading: false,
   books: [],
@@ -48,9 +50,9 @@ export const deleteBooksRequest = () => ({
   type: DELETE_BOOKS,
 });
 
-export const deleteBooksSuccess = (payload) => ({
+export const deleteBooksSuccess = (bookId) => ({
   type: DELETE_BOOKS_SUCCESS,
-  payload,
+  payload: bookId,
 });
 
 export const deleteBooksFailure = (error) => ({
@@ -59,6 +61,8 @@ export const deleteBooksFailure = (error) => ({
 });
 
 const bookReducer = (state = initialState, action) => {
+  let book;
+  let books;
   switch (action.type) {
     case GET_BOOKS:
       return {
@@ -66,6 +70,7 @@ const bookReducer = (state = initialState, action) => {
         loading: true,
       };
     case GET_BOOKS_SUCCESS:
+      book = action.payload;
       return {
         loading: false,
         books: action.payload,
@@ -83,9 +88,13 @@ const bookReducer = (state = initialState, action) => {
         loading: true,
       };
     case POST_BOOKS_SUCCESS:
+      book = action.payload;
       return {
         loading: false,
-        books: action.payload,
+        books: {
+          ...state.books,
+          [book.id]: [book],
+        },
         error: '',
       };
     case POST_BOOKS_FAILURE:
@@ -100,9 +109,11 @@ const bookReducer = (state = initialState, action) => {
         loading: true,
       };
     case DELETE_BOOKS_SUCCESS:
+      books = { ...state.books };
+      delete books[action.payload];
       return {
         loading: false,
-        books: action.payload,
+        books,
         error: '',
       };
     case DELETE_BOOKS_FAILURE:
@@ -119,13 +130,12 @@ const bookReducer = (state = initialState, action) => {
 const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/CqPOA94UfXDdN76nPU1T/books';
 
 export const getBooks = () => async (dispatch) => {
-  dispatch(getBooksRequest(url));
+  dispatch(getBooksRequest());
   try {
     const response = await fetch(url);
     const data = await response.json();
     dispatch(getBooksSuccess(data));
   } catch (err) {
-    console.log(err.message);
     dispatch(getBooksFailure(err.message));
   }
 };
@@ -133,33 +143,26 @@ export const getBooks = () => async (dispatch) => {
 export const postBooks = (newBook) => async (dispatch) => {
   dispatch(postBooksRequest());
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(newBook),
+    const response = await axios.post(url, {
+      ...newBook,
     });
-    const data = await response.json();
-    console.log({ data });
-    dispatch(postBooksSuccess());
+    if (response.status === 201) {
+      dispatch(postBooksSuccess(newBook));
+    }
   } catch (err) {
-    console.log(err.message);
     dispatch(postBooksFailure(err.message));
   }
 };
 
 export const deleteBook = (id) => async (dispatch) => {
-  dispatch(deleteBooksRequest(id));
+  dispatch(deleteBooksRequest());
   try {
     const delURL = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/CqPOA94UfXDdN76nPU1T/books/${id}`;
-    const response = await fetch(delURL, {
-      method: 'DELETE',
-    });
-    console.log(response);
+    const response = await axios.delete(delURL);
+    if (response.status === 201) {
+      dispatch(deleteBooksSuccess(id));
+    }
   } catch (err) {
-    console.log(err.message);
     dispatch(deleteBooksFailure(err.message));
   }
 };

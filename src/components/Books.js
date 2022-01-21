@@ -25,18 +25,14 @@ const Books = () => {
 
   return (
     <>
-      <div>
+      <div className="bookContainer">
         <ul className="bookList">
           {Object.entries(booksData).map(([key, value]) => (
-            <li key={key}>
-              <h3>
-                Title:
-                {value[0].title}
-              </h3>
-              <p>
-                Category:
-                {value[0].category}
-              </p>
+            <li className="bookItem" key={key}>
+              <div className="bookData">
+                <p className="category">{value[0].category}</p>
+                <h3>{value[0].title}</h3>
+              </div>
               <button
                 type="button"
                 onClick={() => handleRemove(key)}
@@ -48,34 +44,37 @@ const Books = () => {
           ))}
         </ul>
       </div>
+      <div className="lineBr" />
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add new book..."
-          name="title"
-          id="title"
-          required
-        />
-        <select
-          name="category"
-          id="category"
-          placeholder="Add Book Category"
-          required
-        >
-          <option value="" default hidden>
-            Choose a Category
-          </option>
-          <option value="Fiction">Fiction</option>
-          <option value="Action and Adventure">Action and Adventure</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Romance">Romance</option>
-          <option value="Letteriture">Letteriture</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-          <option value="Comics">Comic</option>
-        </select>
-        <button type="submit" id="addBookBtn">
-          Add book
-        </button>
+        <h2 className="formTitle">Add New Book</h2>
+        <div className="formContainer">
+          <input
+            type="text"
+            placeholder="Add new book..."
+            name="title"
+            id="title"
+            required
+          />
+          <select
+            name="category"
+            id="category"
+            required
+          >
+            <option value="" default hidden>
+              Choose a Category
+            </option>
+            <option className="option" value="Fiction">Fiction</option>
+            <option className="option" value="Action and Adventure">Action and Adventure</option>
+            <option className="option" value="Fantasy">Fantasy</option>
+            <option className="option" value="Romance">Romance</option>
+            <option className="option" value="Letteriture">Letteriture</option>
+            <option className="option" value="Sci-Fi">Sci-Fi</option>
+            <option className="option" value="Comics">Comic</option>
+          </select>
+          <button type="submit" id="addBookBtn">
+            Add book
+          </button>
+        </div>
       </form>
     </>
   );

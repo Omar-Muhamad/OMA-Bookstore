@@ -10,6 +10,12 @@ ul {
   list-style: none;
 }
 
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 button {
   font-family: 'Roboto Slab', serif;
   width: 11.5rem;
@@ -50,23 +56,16 @@ form {
 }
 
 .links {
-  display: flex;
-  flex-direction: row;
   gap: 3rem;
 }
 
 .navbar {
   height: 6rem;
   padding: 0 6.25rem;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
 .navLinks {
-  display: flex;
-  align-items: center;
   gap: 2.5rem;
   color: #121212;
 }
@@ -93,8 +92,7 @@ form {
 }
 
 .bookList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1rem;
 }
 
@@ -105,9 +103,7 @@ form {
   background-color: #fff;
   border-radius: 4px;
   border: solid 2px #e8e8e8;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .category {
@@ -144,7 +140,6 @@ form {
 .formContainer {
   height: 3rem;
   margin-top: 1.2rem;
-  display: flex;
   gap: 2.2rem;
 }
 

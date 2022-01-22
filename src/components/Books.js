@@ -28,7 +28,7 @@ const Books = () => {
       <div className="bookContainer">
         <ul className="bookList">
           {Object.entries(booksData).map(([key, value]) => (
-            <li className="bookItem" key={key}>
+            <li className="bookItem d-flex" key={key}>
               <div className="bookData">
                 <p className="category">{value[0].category}</p>
                 <h3>{value[0].title}</h3>
@@ -47,7 +47,7 @@ const Books = () => {
       <div className="lineBr" />
       <form onSubmit={handleSubmit}>
         <h2 className="formTitle">Add New Book</h2>
-        <div className="formContainer">
+        <div className="formContainer d-flex">
           <input
             type="text"
             placeholder="Add new book..."

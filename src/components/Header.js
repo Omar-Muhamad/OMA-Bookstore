@@ -3,12 +3,12 @@ import userAvatar from '../images/user-avatar.png';
 
 const Header = () => (
   <header id="header">
-    <nav className="navbar">
-      <div className="links">
+    <nav className="navbar d-flex">
+      <div className="links d-flex">
         <Link to="/">
           <h1 className="logo">OMA Bookstore</h1>
         </Link>
-        <ul className="navLinks">
+        <ul className="navLinks d-flex">
           <Link to="/">
             <li className="navLink">Books</li>
           </Link>

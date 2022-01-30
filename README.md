@@ -1,12 +1,16 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 # OMA Bookstore
-> The Bookstore is a website similar to the "Awesome Books" website built in the previous module. You will create an MVP version of it that allows you to:
+> The Bookstore is a website similar to the "Awesome Books" website built in the previous module. Its MVP version of it that allows you to:
 
 - Display a list of books.
 - Add a book.
 - Remove a selected book.
 
 I build this application using React and Redux togethar.
+
+## Live Demo
+
+Live Demo [Link](https://oma-bookstore.netlify.app/)
 
 ## Site Screenshots
 
@@ -16,9 +20,9 @@ I build this application using React and Redux togethar.
 ## Built With
 
 - React.
+- Redux
 - HTML.
 - CSS.
-- Webpack.
 - JavaScript.
 - Linters.
 

@@ -2,9 +2,9 @@
 # OMA Bookstore
 
 > The Bookstore is an app built with React and Redux and has two pages books(home page) and categories(under construction). Its MVP (Minimum Viable Product) version of it that allows you to:
-- Display a list of books.
-- Add a book.
-- Remove a selected book
+> - Display a list of books.
+> - Add a book.
+> - Remove a selected book
 
 ## Live Demo
 
